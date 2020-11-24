@@ -1,0 +1,44 @@
+{
+  "name": "darkside666/lvarhivs-xml",
+  "description": "Preparing XML for passing documents to Latvian Archive",
+  "type": "library",
+  "keywords": [
+    "lvarhivs",
+    "arhivs",
+    "latvijas valsts arhivs",
+    "arhivs xml"
+  ],
+  "homepage": "https://github.com/DarkSide666/lvarhivs-xml",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Imants Horsts",
+      "homepage": "https://darkside.lv/"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "config": {
+    "sort-packages": true
+  },
+  "require": {
+    "php": ">=7.3.0",
+    "atk4/ui": "dev-develop",
+    "atk4/login": "dev-feature/fixes"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "phpunit/phpcov": "*",
+    "phpunit/phpunit": ">=9.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "darkside666\\lvarhivs\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "darkside666\\lvarhivs\\tests\\": "tests/"
+    }
+  }
+}
