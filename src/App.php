@@ -46,28 +46,25 @@ class App extends \atk4\ui\App
         $this->auth->setModel($m);
         $this->auth->setAcl(new Acl(), $this->db);
 
-        //$this->check(); // authorize
-
-        // Add user menu
-        if ($this->auth->isLoggedIn()) {
-            $this->auth->addUserMenu();
-        }
-
 
 
         // Construct menu
         $this->layout->menuLeft->addItem(['Dashboard', 'icon' => 'info'], ['index']);
-        /*
-        $this->layout->menuLeft->addItem(['Setup demo database', 'icon' => 'cogs'], ['admin-setup']);
-
-        $g = $this->layout->menuLeft->addGroup(['Forms']);
-        $g->addItem(['Sign-up form', 'icon' => 'edit'], ['form-register']);
-        $g->addItem(['Login form', 'icon' => 'edit'], ['form-login']);
-        $g->addItem(['Forgot password form', 'icon' => 'edit'], ['form-forgot']);
-        */
 
         $g = $this->layout->menuLeft->addGroup(['Settings']);
+        $g->addItem(['Companies', 'icon' => 'building'], ['admin-companies']);
+        $g->addItem(['Registers', 'icon' => 'table'], ['admin-registers']);
         $g->addItem(['Users', 'icon' => 'users'], ['admin-users']);
         $g->addItem(['Roles', 'icon' => 'tasks'], ['admin-roles']);
+
+        $company = new Model\Company($this->db);
+        foreach ($company as $_company) {
+            $g = $this->layout->menuLeft->addGroup([$_company->getTitle()]);
+
+            $register = $company->ref('Registers');
+            foreach ($register as $_register) {
+                $g->addItem([$_register->getTitle(), 'icon' => 'list'], ['register', 'id' => $_register->getId()]);
+            }
+        }
     }
 }
