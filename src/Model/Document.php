@@ -46,7 +46,15 @@ class Document extends Model
             'model' => [Author::class],
             'caption' => 'Autori',
             'ui' => [
-                'form' => [\atk4\ui\Form\Control\Multiline::class],
+                'form' => [
+                    \atk4\ui\Form\Control\Multiline::class,
+                    'options' => [
+                        'suiTable' => [
+                            'compact' => 'very',
+                            'size' => 'small'
+                        ],
+                    ],
+                ],
             ],
         ]);
 
